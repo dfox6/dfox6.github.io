@@ -1,0 +1,301 @@
+<!doctype html>
+<!--
+  David Fox — personal site
+  Everything marked "EDIT" is sample text: swap in your own details.
+  To publish: upload this file to your username.github.io repository.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>David Fox</title>
+  <meta name="description" content="David Fox: résumé, projects, and contact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23d4622a'/><text x='50' y='64' font-size='42' font-family='Georgia,serif' text-anchor='middle' fill='white'>DF</text></svg>">
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --surface: #ffffff;
+      --text: #1f1b16;
+      --muted: #6b6259;
+      --line: #e8e1d6;
+      --accent: #d4622a;
+      --accent-soft: #f6e3d6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16130f;
+        --surface: #1f1b16;
+        --text: #f2ece4;
+        --muted: #a89d90;
+        --line: #2f2922;
+        --accent: #ec8550;
+        --accent-soft: #3a2418;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+    .mark { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 21px; text-decoration: none; }
+    .mark span { color: var(--accent); }
+    nav ul { display: flex; gap: 26px; list-style: none; }
+    nav ul a { text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500; transition: color .2s; }
+    nav ul a:hover { color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 110px 0 90px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; z-index: -1;
+      width: 560px; height: 560px; right: -180px; top: -140px; border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+    }
+    .eyebrow {
+      display: inline-block; margin-bottom: 20px;
+      font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    h1 {
+      font-family: Fraunces, Georgia, serif; font-weight: 400;
+      font-size: clamp(44px, 8vw, 78px); line-height: 1.04; letter-spacing: -.02em;
+      margin-bottom: 26px;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .lede { font-size: 20px; color: var(--muted); max-width: 560px; margin-bottom: 38px; }
+    .buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 999px;
+      font-weight: 600; font-size: 15px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn.primary { background: var(--accent); color: #fff; }
+    .btn.ghost { background: var(--surface); border: 1px solid var(--line); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -10px rgba(0,0,0,.3); }
+
+    /* Sections */
+    section { padding: 72px 0; border-top: 1px solid var(--line); }
+    h2 {
+      font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 31px;
+      display: flex; align-items: baseline; gap: 14px; margin-bottom: 30px;
+    }
+    h2 .num { font-family: Inter, sans-serif; font-size: 14px; font-weight: 600; color: var(--accent); }
+
+    .about p { max-width: 640px; margin-bottom: 16px; }
+    .skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; list-style: none; }
+    .skills li { padding: 6px 14px; border-radius: 999px; background: var(--accent-soft); font-size: 14px; font-weight: 500; }
+
+    .job { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px dashed var(--line); }
+    .job:first-of-type { padding-top: 0; }
+    .job:last-of-type { border-bottom: none; }
+    .when { color: var(--muted); font-size: 15px; padding-top: 2px; }
+    .job h3 { font-size: 18px; font-weight: 600; }
+    .job .org { color: var(--accent); font-weight: 500; font-size: 15px; margin-bottom: 8px; }
+    .job p { color: var(--muted); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .card {
+      display: block; text-decoration: none;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 16px 32px -20px rgba(0,0,0,.4); }
+    .card .tag { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+    .card h3 { font-family: Fraunces, Georgia, serif; font-size: 23px; font-weight: 600; margin: 10px 0 8px; }
+    .card p { color: var(--muted); font-size: 15px; }
+    .card .arrow { display: inline-block; margin-top: 18px; font-weight: 600; font-size: 14px; transition: transform .2s; }
+    .card:hover .arrow { transform: translateX(4px); }
+
+    .contact { text-align: center; }
+    .contact h2 { justify-content: center; }
+    .contact p { color: var(--muted); max-width: 480px; margin: 0 auto 28px; }
+    .big-email {
+      font-family: Fraunces, Georgia, serif; font-size: clamp(24px, 5.5vw, 40px);
+      color: var(--accent); text-decoration: none;
+      border-bottom: 2px solid var(--accent-soft); transition: border-color .2s;
+    }
+    .big-email:hover { border-color: var(--accent); }
+    .socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+
+    footer { padding: 36px 0; text-align: center; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+
+    /* Gentle fade-in on scroll (only when JavaScript runs) */
+    .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      nav ul { gap: 16px; }
+      nav ul a { font-size: 14px; }
+      .hero { padding: 72px 0 64px; }
+      .lede { font-size: 18px; }
+      .job { grid-template-columns: 1fr; gap: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <script>document.documentElement.classList.add('js');</script>
+
+  <nav>
+    <div class="wrap">
+      <a class="mark" href="#top">DF<span>.</span></a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <span class="eyebrow">Hello, I'm</span>
+      <h1>David Fox.<br>I make <em>thoughtful</em> things.</h1>
+      <!-- EDIT: one or two sentences about what you do -->
+      <p class="lede">A designer and developer who loves turning messy problems into simple, useful products. Currently open to new opportunities.</p>
+      <div class="buttons">
+        <a class="btn primary" href="#projects">See my work →</a>
+        <!-- EDIT: upload your résumé as resume.pdf next to this file -->
+        <a class="btn ghost" href="resume.pdf">Download résumé</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="about reveal">
+      <div class="wrap">
+        <h2><span class="num">01</span>About me</h2>
+        <!-- EDIT: your story -->
+        <p>I've spent the last several years building websites, apps, and tools for teams of all sizes. I care about clean design, clear writing, and the small details that make something feel good to use.</p>
+        <p>Outside of work you'll find me hiking, cooking something ambitious, or tinkering with a side project that probably didn't need to exist.</p>
+        <!-- EDIT: your skills -->
+        <ul class="skills">
+          <li>Product design</li>
+          <li>JavaScript</li>
+          <li>React</li>
+          <li>Python</li>
+          <li>Figma</li>
+          <li>Writing</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="experience" class="reveal">
+      <div class="wrap">
+        <h2><span class="num">02</span>Experience</h2>
+        <!-- EDIT: your jobs (copy a .job block to add more) -->
+        <div class="job">
+          <div class="when">2023 — Present</div>
+          <div>
+            <h3>Senior Product Designer</h3>
+            <div class="org">Company Name</div>
+            <p>Led the redesign of the core product, working closely with engineers to ship features used by thousands of people every day.</p>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">2020 — 2023</div>
+          <div>
+            <h3>Front-End Developer</h3>
+            <div class="org">Another Company</div>
+            <p>Built and maintained customer-facing web apps, and set up a shared component library that cut design-to-launch time in half.</p>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">2016 — 2020</div>
+          <div>
+            <h3>B.S. in Computer Science</h3>
+            <div class="org">University Name</div>
+            <p>Focused on human-computer interaction and web development.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="reveal">
+      <div class="wrap">
+        <h2><span class="num">03</span>Selected projects</h2>
+        <!-- EDIT: your projects; change href="#" to each project's link -->
+        <div class="grid">
+          <a class="card" href="#">
+            <span class="tag">Web app</span>
+            <h3>Project One</h3>
+            <p>A short description of what it does, who it's for, and what you were proud of.</p>
+            <span class="arrow">View project →</span>
+          </a>
+          <a class="card" href="#">
+            <span class="tag">Design</span>
+            <h3>Project Two</h3>
+            <p>A short description of the problem you solved and the result it had.</p>
+            <span class="arrow">View project →</span>
+          </a>
+          <a class="card" href="#">
+            <span class="tag">Side project</span>
+            <h3>Project Three</h3>
+            <p>Something you built for fun that shows off a skill or an interest.</p>
+            <span class="arrow">View project →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact reveal">
+      <div class="wrap">
+        <h2><span class="num">04</span>Let's talk</h2>
+        <p>Whether you have a role in mind, a project idea, or just want to say hi, my inbox is open.</p>
+        <!-- EDIT: your email (both places) -->
+        <a class="big-email" href="mailto:hello@example.com">hello@example.com</a>
+        <!-- EDIT: your profile links -->
+        <div class="socials">
+          <a class="btn ghost" href="https://www.linkedin.com/">LinkedIn</a>
+          <a class="btn ghost" href="https://github.com/">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year">2026</span> David Fox</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const items = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      items.forEach((el) => io.observe(el));
+    } else {
+      items.forEach((el) => el.classList.add('in'));
+    }
+  </script>
+</body>
+</html>
